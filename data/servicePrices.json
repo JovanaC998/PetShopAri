@@ -1,0 +1,38 @@
+[
+    {
+        "title":"BASIC",
+        "subtitle":"The Affordable Choice",
+        "price":"49",
+        "services":{
+            "PetFeeding":true,
+            "PetGrooming":true,
+            "PetBoarding":false,
+            "PetTraining":false,
+            "PetTreatment":false
+        }
+    },
+    {
+        "title":"STANDARD",
+        "subtitle":"The Best Choice",
+        "price":"99",
+        "services":{
+            "PetFeeding":true,
+            "PetGrooming":true,
+            "PetBoarding":true,
+            "PetTraining":false,
+            "PetTreatment":false
+        }
+    },
+    {
+        "title":"EXTENDED",
+        "subtitle":"All inclusive",
+        "price":"149",
+        "services":{
+            "PetFeeding":true,
+            "PetGrooming":true,
+            "PetBoarding":true,
+            "PetTraining":true,
+            "PetTreatment":true
+        }
+    }
+]

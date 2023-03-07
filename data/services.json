@@ -1,0 +1,32 @@
+[
+    {
+        "title":"Pet Boarding",
+        "text":"We provide a safe and comfortable environment for pets to stay while their owners are away<span class='dots'>...</span> <span class='more'>.We are also offer additional services, such as grooming,veterinary care, and training. </span>",
+        "icon":"house"
+    },
+    {
+        "title":"Pet Feeding",
+        "text":"We offer a range of pet feeding options and products, including a variety of pet food brands, treats<span class='dots'>...</span> <span class='more'>.We are also offer range of feeding accessories, including bowls, automatic feeders, and water dispensers </span>",
+        "icon":"food"
+    },
+    {
+        "title":"Pet Grooming",
+        "text":"We offer pet grooming, which refers to the process of cleaning and maintaining the hygiene of pets, such as cats and dogs <span class='dots'>...</span> <span class='more'>.It includes various activities like bathing, brushing, trimming, and clipping their hair or fur.</span>",
+        "icon":"grooming"
+    },
+    {
+        "title":"Pet Training",
+        "text":"We offer pet training, which is the process of teaching a pet, such as a dog or cat, to learn and follow certain commands or behaviors.<span class='dots'>...</span> <span class='more'>.There are different types of pet training, including obedience training, behavior training, and agility training. </span>",
+        "icon":"cat"
+    },
+    {
+        "title":"Pet Exercise",
+        "text":"Pet owners should consult with our veterinarian to determine the appropriate type and amount of exercise for their pets<span class='dots'>...</span> <span class='more'>.It is important to gradually increase exercise routines, provide plenty of water during and after exercise. </span>",
+        "icon":"dog"
+    },
+    {
+        "title":"Pet Treatment",
+        "text":"Pet treatment refers to the medical care and procedures provided to pets when they are sick or injured.<span class='dots'>...</span> <span class='more'>.the goal of pet treatment is to maintain the health and well-being of pets. </span>",
+        "icon":"vaccine"
+    }
+]

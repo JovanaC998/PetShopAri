@@ -1,0 +1,31 @@
+[
+    {
+        "href":"index.html",
+        "text":"Home"
+    },
+    {
+        "href":"service.html",
+        "text":"Services"
+    }, {
+        "href":"product.html",
+        "text":"Products"
+    },
+    {
+        "href":"cart.html",
+        "text":"Your Cart <i class='bi bi-cart-fill'></i>"
+    },
+    {
+        "href":"price.html",
+        "text":"Pricing Plan"
+    },
+    {
+        "href":"team.html",
+        "text":"The Team"
+    }
+    , 
+    {
+        "href":"about.html",
+        "text":"About Author"
+    }
+
+]

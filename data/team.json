@@ -1,0 +1,43 @@
+[
+    {
+        "fullName":"Sophia Williams",
+        "designation":"Pet Care Specialist",
+        "img":{
+            "src":"team-1",
+            "alt":"First employe"
+        }
+    },
+    {
+        "fullName":"Olivia Johnson",
+        "designation":"Pet Groomer",
+        "img":{
+            "src":"team-2",
+            "alt":"Second employe"
+        }
+    },
+    {
+        "fullName":"Mia Thompson",
+        "designation":"Pet Trainer",
+        "img":{
+            "src":"team-3",
+            "alt":"Third employe"
+        }
+    },
+    {
+        "fullName":"Harper Lee",
+        "designation":"Pet Trainer",
+        "img":{
+            "src":"team-4",
+            "alt":"Fourth employe"
+        }
+    },
+    {
+        "fullName":"Ava Patel",
+        "designation":"Veterinary Assistantr",
+        "img":{
+            "src":"team-5",
+            "alt":"Fifth employe"
+        }
+    }
+    
+]

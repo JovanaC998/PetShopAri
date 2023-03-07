@@ -1,0 +1,20 @@
+[
+    {
+        "img":{
+            "src":"testimonial-1",
+            "alt":"Client-1"
+        },
+        "text":"I am so glad I found this pet shop! The staff is incredibly knowledgeable and helpful, and they have a wide selection of high-quality pet products. Whether I need food, toys, or advice on how to care for my furry friend, they always have the answers. I highly recommend this pet shop to anyone looking for the best for their pets.",
+        "title":"Sophia Johnson",
+        "department":"Interior decorator."
+    },
+    {
+        "img":{
+            "src":"testimonial-2",
+            "alt":"Client-2"
+        },
+        "text":"I recently adopted a new puppy and needed to stock up on supplies. This pet shop had everything I needed and more. The staff was so friendly and welcoming, and they even gave me some helpful tips on how to train my new addition. I will definitely be returning for all of my pet needs.",
+        "title":"Ethan Jameson",
+        "department":"Marketing manager."
+    }
+]
