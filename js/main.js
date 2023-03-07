@@ -24,7 +24,7 @@
 
 		//menu.json
 		$.ajax({
-			url: "https://jovanac998.github.io/PetShopAri/data/menu.json",
+			url: "data/menu.json",
 			method: "get",
 			dataType: "json",
 			success: function(data) {
