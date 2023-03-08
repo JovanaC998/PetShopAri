@@ -226,6 +226,9 @@
 						(selectedTypes.length === 0 || selectedTypes.some(type => product.type.includes(type)))
 					);
 					writingAllProducts(filteredProducts);
+					if(filteredProducts.length<=0){
+						alertify.error("There is no products for selected category.")
+					}
 				}, 300);
 			}
 
@@ -832,8 +835,8 @@
 		var messageEmail = "You didn't enter Email correctly! Example: john.doe@gmail.com";
 		var messagePhone = "You didn't enter Phone correctly! Example: 0631234567";
 		var messageText = "You didn't enter Message correctly! Example: Hello World!";
-		var messageRadio = "You have to chose one of the gender!"
-		var messageCb = "You have to chose one of the pet!"
+		var messageRadio = "You have to choose one of the gender!"
+		var messageCb = "You have to choose one of the pet!"
 
 
 		checkRegex(reName, nameContact, messageFullName);
