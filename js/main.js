@@ -1,7 +1,6 @@
 (function($) {
 	"use strict";
 	var flag = true;
-	document.getElementById("btnSend").addEventListener("click", function(){flag=true});
 	var currentPage = window.location.pathname.split("/").pop();
 
 	$(document).ready(function() {
@@ -694,6 +693,8 @@
 			}
 		} else if (currentPage == "contact.html") {
 			document.getElementById("btnSend").addEventListener("click", formValidate);
+			document.getElementById("btnSend").addEventListener("click", function(){flag=true});
+
 		}
 
 
