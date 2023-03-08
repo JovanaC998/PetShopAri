@@ -453,6 +453,12 @@ td.invert-image a img {
 	cursor: pointer;
 }
 
+#total{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1% 1% 0% 0%;
+}
+
 .navbar-brand{
     padding-left:10px ;
 }

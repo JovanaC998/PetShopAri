@@ -431,8 +431,10 @@
 
 				} else {
 					if (productIsAlreadyInCart()) {
+						console.log(productInCart);
 						updateQuantity();
-						alertify.success("")
+						let productQuantity = productInCart.filter(p => p.id == id);
+						alertify.success(`You have succesfully increased quantity of product in cart to: ${productQuantity[0].quantity + 1}`);
 					} else {
 						addToLocalStorage();
 						alertify.success("Product successfully added to cart.")
@@ -680,18 +682,20 @@
 		document.getElementById("content").innerHTML = `<h2 class="m-0 text-uppercase text-dark">Want to shop?<a href="product.html"> Click Here!</a></h2>`;
 	}
 
+	var allProductsJson;
+
 	function displayCart() {
 		let products = productsInCart();
 		if (products == null) {
 			showEmptyCart();
 			return;
 		}
-
 		$.ajax({
 			url: "data/allProducts.json",
 			method: "GET",
 			dataType: "json",
 			success: function(data) {
+				allProductsJson = data;
 				data = data.filter(el => {
 					for (let p of products) {
 						if (el.id == p.id) {
@@ -708,12 +712,15 @@
 
 	function generateTable(products) {
 
+		let sum = sumOfProducts(allProductsJson, products);
+
 		if (products.length == 0) {
 			showEmptyCart();
 			return;
 		}
-		let html = `<button id="btnClear" class="btn btn-primary">Clear Cart</button>
-	<table id="hideTable" class="timetable_sub"> 
+		let html = `<button id="btnOrder" class="btn btn-primary">Order</button>
+		<button id="btnClear" class="btn btn-primary">Clear Cart</button>
+		<table id="hideTable" class="timetable_sub"> 
                   <thead>
                     <tr>
                       <th>SL No.</th>
@@ -732,11 +739,14 @@
 		}
 
 		html += `</tbody>
-          </table>`
+          </table>
+		  <h4 class="text-body" id="total">Total: $${sum}</h4>`
+
 
 		document.getElementById("show").classList.add("emptyC");
 		document.getElementById("content").innerHTML = html;
 		$(".btnRemove").click(removeFromCart);
+		$("#btnOrder").click(orderProduct);
 		$("#btnClear").click(clearCart);
 
 	}
@@ -763,6 +773,22 @@
 		displayCart();
 	}
 
+	function sumOfProducts() {
+		let products = productsInCart();
+		let sum = 0;
+		allProductsJson.filter(product => products.some(s => product.id == s.id))
+			.forEach(filteredProduct => sum += (filteredProduct.quantity * filteredProduct.price.current));
+		return sum.toFixed(2);
+	}
+
+	function orderProduct(){
+		let sum = sumOfProducts();
+
+		alertify.success(`Thank you for your order. Total cost is:${sum}$. We'll contact you with any updates.`)
+		localStorage.removeItem("productInCart");
+		showEmptyCart();
+	}
+
 	function clearCart() {
 		let products = productsInCart();
 		if (products != null) {
@@ -770,6 +796,7 @@
 			alertify.success('You have successfully removed all products from cart.');
 
 			showEmptyCart();
+
 
 		} else {
 			alertify.error("You have not ordered any product.");
