@@ -423,6 +423,14 @@ td.invert-image a img {
     padding: 5px;
     color: var(--dark)
 }
+
+.rbtn{
+    padding-left: 8%;
+}
+
+.cb{
+    padding-left: 5%;
+}
 #authorImg{
     display: flex;
     justify-content:  center;
@@ -459,10 +467,10 @@ td.invert-image a img {
     padding: 1% 1% 0% 0%;
 }
 
+
 .navbar-brand{
     padding-left:10px ;
 }
-  
 
 .more {
     display: none;

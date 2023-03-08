@@ -21,34 +21,30 @@
 		toggleNavbarMethod();
 		$(window).resize(toggleNavbarMethod);
 
+		//ajaxcallBack
+		function ajaxCallBack(filename, result) {
+			$.ajax({
+				url: "data/" + filename,
+				method: "get",
+				dataType: "json",
+				success: result,
+				error: function(err) {
+				console.log(err)
+			}
+			});
+		}
 		//menu.json
-		$.ajax({
-			url: "data/menu.json",
-			method: "get",
-			dataType: "json",
-			success: function(data) {
-				writingNavMenu(data);
-				writingPages(data);
-				writingFooter(data);
-			},
-			error: function(err) {
-				console.error(err);
-			},
-		});
+		ajaxCallBack("menu.json", function(result) {
+			writingNavMenu(result);
+			writingPages(result);
+			writingFooter(result);
 
+		})
 
 		//informations.json
-		$.ajax({
-			url: "data/informations.json",
-			method: "get",
-			dataType: "json",
-			success: function(data) {
-				writingInformations(data);
-			},
-			error: function(err) {
-				console.error(err);
-			},
-		});
+		ajaxCallBack("informations.json", function(result) {
+			writingInformations(result);
+		})
 
 		//writing Informations
 		function writingInformations(listOfInformations) {
@@ -107,18 +103,10 @@
 
 		if (currentPage == "service.html") {
 			//services.json
-			$.ajax({
-				url: "data/services.json",
-				method: "get",
-				dataType: "json",
-				success: function(data) {
-					writingServices(data);
-				},
-				error: function(err) {
-					console.error(err);
-				},
-			});
-
+			ajaxCallBack("services.json", function(result) {
+				writingServices(result);
+			})
+			
 			//writing services
 			function writingServices(listOfServices) {
 				let html = "";
@@ -171,29 +159,14 @@
 				},
 			});
 			//categories.json
-			$.ajax({
-				url: "data/categories.json",
-				method: "get",
-				dataType: "json",
-				success: function(data) {
-					writingCategoires(data);
-				},
-				error: function(err) {
-					console.error(err);
-				}
-			});
+			ajaxCallBack("categories.json", function(result) {
+				writingCategoires(result);
+			})
+			
 			//types.json
-			$.ajax({
-				url: "data/types.json",
-				method: "get",
-				dataType: "json",
-				success: function(data) {
-					writingTypes(data);
-				},
-				error: function(err) {
-					console.error(err);
-				},
-			});
+			ajaxCallBack("types.json", function(result) {
+				writingTypes(result);
+			})
 
 			//writing categories
 			function writingCategoires(ListOfCategories) {
@@ -273,7 +246,7 @@
 				filterInputs.forEach(input => {
 					input.checked = false
 				})
-				writingAllProducts(products)
+				filterProducts(products)
 			}
 
 			var timer;
@@ -477,17 +450,10 @@
 
 		} else if (currentPage == "price.html") {
 			//price.json
-			$.ajax({
-				url: "data/servicePrices.json",
-				method: "get",
-				dataType: "json",
-				success: function(data) {
-					writingPrice(data);
-				},
-				error: function(err) {
-					console.error(err);
-				}
-			});
+			ajaxCallBack("servicePrices.json", function(result) {
+				writingPrice(result);
+			})
+
 			//writing Price
 			function writingPrice(listOfServicePrices) {
 				let html = "";
@@ -529,29 +495,12 @@
 			}
 		} else if (currentPage == "team.html") {
 			//team.json
-			$.ajax({
-				url: "data/team.json",
-				method: "get",
-				dataType: "json",
-				success: function(data) {
-					writingTeam(data)
-				},
-				error: function(err) {
-					console.error(err);
-				}
+			ajaxCallBack("team.json", function(result) {
+				writingTeam(result);
 			})
-
 			//clients.json
-			$.ajax({
-				url: "data/clients.json",
-				method: "get",
-				dataType: "json",
-				success: function(data) {
-					writingClients(data)
-				},
-				error: function(err) {
-					console.error(err);
-				}
+			ajaxCallBack("clients.json", function(result) {
+				writingClients(result);
 			})
 
 			function writingClients(listOfClients) {
@@ -662,6 +611,24 @@
 				showEmptyCart();
 			}
 		} else if (currentPage == "contact.html") {
+			//type.json
+			ajaxCallBack("types.json", function(result) {
+				insertCb(result);
+			})
+
+			//writing checkbox
+			function insertCb(listOfTypes) {
+				let html = '';
+				const cb = document.getElementsByClassName("cb");
+				listOfTypes.forEach(function callback(element, index) {
+					html = `
+					<input type="checkbox" name="checkbox" class="form-check-input fnt">
+					<label class="form-label">${element.title}</label>
+					`
+					
+					cb[index].innerHTML = html;
+				});
+			}
 			document.getElementById("btnSend").addEventListener("click", formValidate);
 			document.getElementById("btnSend").addEventListener("click", function() {
 				flag = true
@@ -689,6 +656,7 @@
 			showEmptyCart();
 			return;
 		}
+			
 		$.ajax({
 			url: "data/allProducts.json",
 			method: "GET",
@@ -852,6 +820,8 @@
 		var email = document.getElementById("email");
 		var phoneContact = document.getElementById("phone");
 		var textArea = document.getElementById("message");
+		var radioBtns = document.getElementsByName("radio");
+		var cb = document.getElementsByName("checkbox");
 
 		var reText = /^[A-Za-z0-9\s!@#$%^&*()_+=-`~\\\]\[{}|';:/.,?><]{2,}$/;
 		var reName = /^[A-ZŠĐČĆŽ][a-zšđčćž]{1,11}(\s[A-ZŠĐČĆŽ][a-zšđčćž]{1,11})+$/;
@@ -862,12 +832,32 @@
 		var messageEmail = "You didn't enter Email correctly! Example: john.doe@gmail.com";
 		var messagePhone = "You didn't enter Phone correctly! Example: 0631234567";
 		var messageText = "You didn't enter Message correctly! Example: Hello World!";
+		var messageRadio = "You have to chose one of the gender!"
+		var messageCb = "You have to chose one of the pet!"
+
 
 		checkRegex(reName, nameContact, messageFullName);
 		checkRegex(reEmail, email, messageEmail);
 		checkRegex(rePhone, phoneContact, messagePhone);
 		checkRegex(reText, textArea, messageText);
+		let valueRadio = "";
+		for (let i = 0; i < radioBtns.length; i++) {
+			if (radioBtns[i].checked) {
+				valueRadio = radioBtns[i].value;
+				break;
+			}
+		}
+		serviceChecks(valueRadio, radioBtns, messageRadio);
+		let valueCb = "";
+		for (let i = 0; i < cb.length; i++) {
+			if (cb[i].checked) {
+				valueCb += cb[i].value + " ";
+			}
+		}
+	
+        serviceChecks(valueCb, cb, messageCb);
 
+	
 		if (flag) {
 			let divSuccess = document.querySelector("#success");
 			divSuccess.setAttribute("class", "alert alert-success mt-4");
@@ -875,6 +865,15 @@
 			divSuccess.innerHTML = `Thanks ${nameContact.value}, we will reach You as soon as possible!`;
 
 			document.getElementById("form").reset();
+		}
+	}
+	function serviceChecks(checkedElements, array, message) {
+		if (checkedElements == "") {
+			array[array.length - 1].parentElement.nextElementSibling.classList.remove("hide");
+			array[array.length - 1].parentElement.nextElementSibling.innerHTML = message;
+			flag=false;
+		} else {
+			array[array.length - 1].parentElement.nextElementSibling.classList.add("hide");
 		}
 	}
 
