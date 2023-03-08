@@ -23,7 +23,7 @@
 
 		//menu.json
 		$.ajax({
-			url: "https://jovanac998.github.io/PetShopAri/data/menu.json",
+			url: "data/menu.json",
 			method: "get",
 			dataType: "json",
 			success: function(data) {
@@ -51,10 +51,10 @@
 		});
 
 		//writing Informations
-		function writingInformations(listOfInformations){
+		function writingInformations(listOfInformations) {
 			let html = "";
 			for (let information of listOfInformations) {
-				html+=`<a class="btn btn-outline-primary btn-square me-2" target="_blank" href="${information.href}"><i class="bi bi-${information.title}"></i></a>`
+				html += `<a class="btn btn-outline-primary btn-square me-2" target="_blank" href="${information.href}"><i class="bi bi-${information.title}"></i></a>`
 			}
 			document.getElementById("information").innerHTML = html;
 		}
@@ -81,14 +81,14 @@
 		}
 
 		//Footer
-		function writingFooter(listOfLinks){
-			let html="";
-			for(let link of listOfLinks){
-				html+=`
+		function writingFooter(listOfLinks) {
+			let html = "";
+			for (let link of listOfLinks) {
+				html += `
 				<a class="text-body mb-2" href="${link.href}"><i class="bi bi-arrow-right text-primary me-2"></i>${link.text}</a>
 				`
 			}
-			document.getElementById("footer").innerHTML=html;
+			document.getElementById("footer").innerHTML = html;
 		}
 
 		//News Letter Validation
@@ -104,9 +104,6 @@
 				email.style.border = "1px solid green"
 			}
 		}
-
-
-
 
 		if (currentPage == "service.html") {
 			//services.json
@@ -219,8 +216,6 @@
 				})
 			}
 
-
-
 			//writing types
 			function writingTypes(listOfTypes) {
 				let html = '<ul>'
@@ -282,8 +277,6 @@
 			}
 
 			var timer;
-
-
 			document.getElementById("selectedProduct").onchange = function() {
 				var selected = this.value;
 
@@ -339,13 +332,10 @@
 					filterProducts(products);
 				}
 			}
-
-
-
 			//writing products
 			function writingAllProducts(listOfAllProducts) {
 				let html1 = "";
-				let productOnDc=listOfAllProducts.filter(p=>p.price.previous!="");
+				let productOnDc = listOfAllProducts.filter(p => p.price.previous != "");
 				for (let product of listOfAllProducts) {
 					if (product.price.previous == "") {
 						html1 += `<div class="productItemFlex product-item position-relative bg-light d-flex flex-column text-center flexProduct" data-id="${product.id}">
@@ -423,7 +413,6 @@
 						},
 					},
 				});
-				//bindCartEvents();
 			}
 			//add to cart
 			function bindCartEvents() {
@@ -482,10 +471,7 @@
 					}];
 					localStorage.setItem("productInCart", JSON.stringify(newProduct));
 				}
-
 			}
-
-
 
 		} else if (currentPage == "price.html") {
 			//price.json
@@ -533,7 +519,6 @@
                     <div class="d-flex align-items-center justify-content-between mb-1">
                     <span>Pet treatment</span>${servicePrice.services.PetTreatment ? '<i class="bi bi-check2 fs-4 text-primary"></i>' : '<i class="bi bi-x fs-4 text-danger"></i>'}
                     </div>
-                    <a href="" class="btn btn-primary text-uppercase py-2 px-4 my-3">Order Now</a>
                   </div>
               </div>
             </div>`
@@ -553,7 +538,7 @@
 					console.error(err);
 				}
 			})
-			
+
 			//clients.json
 			$.ajax({
 				url: "data/clients.json",
@@ -567,30 +552,14 @@
 				}
 			})
 
-			
-
-			//writing clients
-			// Testimonials carousel
-	// $(".testimonial-carousel").owlCarousel({
-		// autoplay: true,
-		// smartSpeed: 1000,
-		// items: 1,
-		// dots: false,
-		// loop: true,
-		// nav: true,
-		// navText: [
-		// 	'<i class="bi bi-arrow-left"></i>',
-		// 	'<i class="bi bi-arrow-right"></i>',
-		// ],
-	// });
-			function writingClients(listOfClients){
+			function writingClients(listOfClients) {
 				var owlItems = [];
 				var owlContainer = document.querySelector("#clients-container");
 				for (let client of listOfClients) {
 					var htmlp = document.createElement("div");
 					htmlp.classList.add("item");
 					htmlp.classList.add("client-item");
-					htmlp.innerHTML =`<div class="testimonial-item text-center">
+					htmlp.innerHTML = `<div class="testimonial-item text-center">
 					<div class="position-relative mb-4">
 						<img class="img-fluid mx-auto" src="img/${client.img.src}.jpg" alt="${client.img.alt}">
 						<div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white" style="width: 45px; height: 45px;">
@@ -693,12 +662,11 @@
 			}
 		} else if (currentPage == "contact.html") {
 			document.getElementById("btnSend").addEventListener("click", formValidate);
-			document.getElementById("btnSend").addEventListener("click", function(){flag=true});
+			document.getElementById("btnSend").addEventListener("click", function() {
+				flag = true
+			});
 
 		}
-
-
-
 	});
 
 	// Get products in cart.
@@ -710,8 +678,6 @@
 
 		document.getElementById("show").classList.remove("emptyC");
 		document.getElementById("content").innerHTML = `<h2 class="m-0 text-uppercase text-dark">Want to shop?<a href="product.html"> Click Here!</a></h2>`;
-
-
 	}
 
 	function displayCart() {
@@ -837,7 +803,6 @@
 			$("#video").attr("src", $videoSrc);
 		});
 
-
 	});
 
 	// Back to top button
@@ -867,7 +832,6 @@
 		var reEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 		var rePhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
-
 		var messageFullName = "You didn't enter Full Name correctly! Example: John Doe.";
 		var messageEmail = "You didn't enter Email correctly! Example: john.doe@gmail.com";
 		var messagePhone = "You didn't enter Phone correctly! Example: 0631234567";
@@ -877,7 +841,6 @@
 		checkRegex(reEmail, email, messageEmail);
 		checkRegex(rePhone, phoneContact, messagePhone);
 		checkRegex(reText, textArea, messageText);
-
 
 		if (flag) {
 			let divSuccess = document.querySelector("#success");
