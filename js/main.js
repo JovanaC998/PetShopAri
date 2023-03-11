@@ -28,9 +28,17 @@
 				method: "get",
 				dataType: "json",
 				success: result,
-				error: function(err) {
-				console.log(err)
-			}
+				error: function(err, xhr, thrownError) {
+					console.log(err);
+					if (xhr.status === 404) {
+						alertify.alert("The requested resource was not found.").set({title:"Error"});
+						;
+
+					} else {
+						alertify.alert("An error occurred while processing your request.").set({title:"Error"});
+						;
+					}
+				}
 			});
 		}
 		//menu.json
@@ -39,7 +47,8 @@
 			writingPages(result);
 			writingFooter(result);
 
-		})
+		}
+		)
 
 		//informations.json
 		ajaxCallBack("informations.json", function(result) {
