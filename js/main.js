@@ -31,8 +31,8 @@
 				error: function(err, xhr, thrownError) {
 					console.log(err);
 					if (xhr.status === 404) {
-						alertify.alert("The requested resource was not found.").set({title:"Error"});
-					}else if (exception === 'timeout') {
+						alert("The requested resource was not found.").set({title:"Error"});
+					}else if (xhr.status === 408) {
 						alertify.alert("An error occurred because website took too long to respond to the browser's request, contact your provider.").set({title:"Error"});
 					}else {
 						alertify.alert("An error occurred while processing your request,  contact your provider.").set({title:"Error"});
@@ -165,7 +165,7 @@
 					console.log(err);
 					if (xhr.status === 404) {
 						alertify.alert("The requested resource was not found.").set({title:"Error"});
-					}else if (exception === 'timeout') {
+					}else if (xhr.status === 408) {
 						alertify.alert("An error occurred because website took too long to respond to the browser's request, contact your provider.").set({title:"Error"});
 					}else {
 						alertify.alert("An error occurred while processing your request,  contact your provider.").set({title:"Error"});
@@ -695,7 +695,7 @@
 				console.log(err);
 				if (xhr.status === 404) {
 					alertify.alert("The requested resource was not found.").set({title:"Error"});
-				}else if (exception === 'timeout') {
+				}else if (xhr.status === 408 ) {
 					alertify.alert("An error occurred because website took too long to respond to the browser's request, contact your provider.").set({title:"Error"});
 				}else {
 					alertify.alert("An error occurred while processing your request,  contact your provider.").set({title:"Error"});
