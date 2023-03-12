@@ -32,11 +32,10 @@
 					console.log(err);
 					if (xhr.status === 404) {
 						alertify.alert("The requested resource was not found.").set({title:"Error"});
-						;
-
-					} else {
-						alertify.alert("An error occurred while processing your request.").set({title:"Error"});
-						;
+					}else if (exception === 'timeout') {
+						alertify.alert("An error occurred because website took too long to respond to the browser's request, contact your provider.").set({title:"Error"});
+					}else {
+						alertify.alert("An error occurred while processing your request,  contact your provider.").set({title:"Error"});
 					}
 				}
 			});
@@ -160,12 +159,18 @@
 				success: function(data) {
 					products = data;
 					writingAllProducts(products);
-					//writingProductsOnDiscount(products);
 
 				},
-				error: function(err) {
-					console.error(err);
-				},
+				error: function(err, xhr, thrownError) {
+					console.log(err);
+					if (xhr.status === 404) {
+						alertify.alert("The requested resource was not found.").set({title:"Error"});
+					}else if (exception === 'timeout') {
+						alertify.alert("An error occurred because website took too long to respond to the browser's request, contact your provider.").set({title:"Error"});
+					}else {
+						alertify.alert("An error occurred while processing your request,  contact your provider.").set({title:"Error"});
+					}
+				}
 			});
 			//categories.json
 			ajaxCallBack("categories.json", function(result) {
@@ -685,6 +690,16 @@
 					return false;
 				});
 				generateTable(data);
+			},
+			error: function(err, xhr, thrownError) {
+				console.log(err);
+				if (xhr.status === 404) {
+					alertify.alert("The requested resource was not found.").set({title:"Error"});
+				}else if (exception === 'timeout') {
+					alertify.alert("An error occurred because website took too long to respond to the browser's request, contact your provider.").set({title:"Error"});
+				}else {
+					alertify.alert("An error occurred while processing your request,  contact your provider.").set({title:"Error"});
+				}
 			}
 		})
 	}
